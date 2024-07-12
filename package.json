@@ -38,7 +38,7 @@
     "@vitejs/plugin-react": "^4.1.0",
     "r3f-perf": "^7.1.2",
     "typescript": "^5.4.3",
-    "vite": "^4.5.3"
+    "vite": "^5.3.3"
   },
   "dependencies": {
     "@react-spring/three": "^9.7.3",
