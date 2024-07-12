@@ -6,9 +6,18 @@ import { Leva } from "leva";
 import { EcctrlJoystick } from "../src/EcctrlJoystick";
 import { Suspense, useEffect, useState } from "react";
 
+import AppWalletProvider from "../example/AppWalletProvider";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+
 const root = ReactDOM.createRoot(document.querySelector("#root"));
+const wallet = ReactDOM.createRoot(document.querySelector("#wallet"));
+
+wallet.render(
+    <AppWalletProvider><WalletMultiButton /></AppWalletProvider>
+);
 
 const EcctrlJoystickControls = () => {
+
   const [isTouchScreen, setIsTouchScreen] = useState(false)
   useEffect(() => {
     // Check if using a touch control device, show/hide joystick
@@ -26,8 +35,10 @@ const EcctrlJoystickControls = () => {
   )
 }
 
+
 root.render(
   <>
+  <AppWalletProvider>
     <Leva collapsed />
     <EcctrlJoystickControls />
     <Canvas
@@ -47,5 +58,6 @@ root.render(
         <Experience />
       </Suspense>
     </Canvas>
+  </AppWalletProvider>
   </>
 );

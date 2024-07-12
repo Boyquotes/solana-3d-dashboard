@@ -22,8 +22,6 @@ import type {
 } from "@dimforge/rapier3d-compat";
 import React from "react";
 
-import { useWallet } from '@solana/wallet-adapter-react';
-
 export { EcctrlAnimation } from "./EcctrlAnimation";
 export { useFollowCam } from "./hooks/useFollowCam";
 export { useGame } from "./stores/useGame";
