@@ -298,4 +298,4 @@ export default function CharacterModel(props: CharacterModelProps) {
 export type CharacterModelProps = JSX.IntrinsicElements["group"];
 
 // Change the character src to yours
-useGLTF.preload("/FloatingCharacter.glb");
+useGLTF.preload("/solana-3d-dashboard/FloatingCharacter.glb");
