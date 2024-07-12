@@ -16,7 +16,7 @@ import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 export default function CharacterModel(props: CharacterModelProps) {
   // Change the character src to yours
   const group = useRef<THREE.Group>();
-  const { nodes, animations } = useGLTF("/FloatingCharacter.glb") as GLTF & {
+  const { nodes, animations } = useGLTF("/solana-3d-dashboard/FloatingCharacter.glb") as GLTF & {
     nodes: any;
   };
   const { actions } = useAnimations(animations, group);
