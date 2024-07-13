@@ -25,7 +25,7 @@ const EcctrlJoystickControls = () => {
     console.log(from);
 
 console.log(window.solana);
-// console.log(window.solana.isPhantom);
+console.log(window.solana.isPhantom);
 
     const { connected } = useWallet();
     console.log(connected);
