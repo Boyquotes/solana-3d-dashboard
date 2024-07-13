@@ -24,50 +24,63 @@ const EcctrlJoystickControls = () => {
     const from = Keypair.generate();
     console.log(from);
 
-console.log(window.solana);
-console.log(window.solana.isPhantom);
+    console.log(window.solana);
+    console.log(window.solana.isPhantom);
 
     const { connected } = useWallet();
     console.log(connected);
 
-  const [isTouchScreen, setIsTouchScreen] = useState(false)
-  useEffect(() => {
-    // Check if using a touch control device, show/hide joystick
-    if (('ontouchstart' in window) ||
-      (navigator.maxTouchPoints > 0)) {
-      setIsTouchScreen(true)
-    } else {
-      setIsTouchScreen(false)
-    }
-  }, [])
-  return (
-    <>
-      {isTouchScreen && <EcctrlJoystick buttonNumber={5} />}
-    </>
-  )
-}
-
-
-root.render(
-  <>
-    <Leva collapsed />
-    <EcctrlJoystickControls />
-    <Canvas
-      shadows
-      camera={{
-        fov: 65,
-        near: 0.1,
-        far: 1000,
-      }}
-      onPointerDown={(e) => {
-        if (e.pointerType === 'mouse') {
-          (e.target as HTMLCanvasElement).requestPointerLock()
+    const provider = window.solana;
+    console.log(provider);
+    const connectWallet = async () => {
+        try {
+            if (provider && provider.isPhantom) {
+                // Connect to the wallet
+                const response = await provider.connect();
+                const publicKey = response.publicKey.toString();
+                console.log(publicKey);
+            }
+        } catch (err) {
+            console.error(err);
         }
-      }}
-    >
-      <Suspense fallback={null}>
-        <Experience />
-      </Suspense>
-    </Canvas>
-  </>
-);
+        const [isTouchScreen, setIsTouchScreen] = useState(false)
+        useEffect(() => {
+            // Check if using a touch control device, show/hide joystick
+            if (('ontouchstart' in window) ||
+                (navigator.maxTouchPoints > 0)) {
+                setIsTouchScreen(true)
+            } else {
+                setIsTouchScreen(false)
+            }
+        }, [])
+        return (
+            <>
+                {isTouchScreen && <EcctrlJoystick buttonNumber={5} />}
+            </>
+        )
+    }
+
+
+    root.render(
+        <>
+            <Leva collapsed />
+            <EcctrlJoystickControls />
+            <Canvas
+                shadows
+                camera={{
+                    fov: 65,
+                    near: 0.1,
+                    far: 1000,
+                }}
+                onPointerDown={(e) => {
+                    if (e.pointerType === 'mouse') {
+                        (e.target as HTMLCanvasElement).requestPointerLock()
+                    }
+                }}
+            >
+                <Suspense fallback={null}>
+                    <Experience />
+                </Suspense>
+            </Canvas>
+        </>
+    );
