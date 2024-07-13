@@ -16,25 +16,38 @@ export default function SonarWatch() {
     const provider = window.solana;
     console.log("provider");
     console.log(provider);
-    const connectWallet = async () => {
-        try {
-            if (provider && provider.isPhantom) {
-                // Connect to the wallet
-                const response = await provider.connect();
-                const publicKey = response.publicKey.toString();
-                console.log("publicKey");
-                console.log(publicKey);
-                setAddressWalletSolana(publicKey);
-            }
-        } catch (err) {
-            console.error(err);
-        }
+    // const connectWallet = async () => {
+        // try {
+        //     if (provider && provider.isPhantom) {
+        //         // Connect to the wallet
+        //         const response = await provider.connect();
+        //         const publicKey = response.publicKey.toString();
+        //         console.log("publicKey");
+        //         console.log(publicKey);
+        //         setAddressWalletSolana(publicKey);
+        //     }
+        // } catch (err) {
+        //     console.error(err);
+        // }
 
-    }
-    connectWallet();
+    // }
+    // connectWallet();
 
     useEffect(() => {
-
+        const getWalletSolana = async () => {
+            try {
+                if (provider && provider.isPhantom) {
+                    // Connect to the wallet
+                    const response = await provider.connect();
+                    const publicKey = response.publicKey.toString();
+                    console.log("publicKey");
+                    console.log(publicKey);
+                    setAddressWalletSolana(publicKey);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
 
         const fetchDataSonar = async () => {
             const apiUrl = "https://portfolio-api.sonar.watch/v1/portfolio/fetch?useCache=false&address=" + addressWalletSolana + "&addressSystem=solana"
@@ -87,7 +100,7 @@ export default function SonarWatch() {
                 console.error('Error fetching data:', error);
             }
         };
-
+        getWalletSolana();
         fetchDataSonar();
     }, []);
     return (
