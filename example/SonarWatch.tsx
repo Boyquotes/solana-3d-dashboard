@@ -102,7 +102,7 @@ export default function SonarWatch() {
         };
         getWalletSolana();
         fetchDataSonar();
-    }, []);
+    }, [addressWalletSolana]);
     return (
         <group position={[0, 0, 10]}>
             {cubeNetworthText}
