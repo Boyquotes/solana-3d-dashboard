@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Character Control</title>
+    <script src="https://cdn.jsdelivr.net/npm/@solana/wallet-adapter-wallets@0.16.0/lib/esm/index.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@solana/wallet-adapter-base@0.8.0/lib/esm/index.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@solana/wallet-adapter-react@0.16.0/lib/esm/index.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@solana/wallet-adapter-react-ui@0.16.0/lib/esm/index.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@solana/wallet-adapter-wallets@0.16.0/lib/esm/index.umd.js"></script>
 </head>
 
 <body>
@@ -22,6 +27,37 @@
         <a target="_blank" href="https://twitter.com/KayLousberg">@KayLousberg</a>
     </p>
     <script type="module" src="./index.tsx"></script>
+    <div id="wallet" style="position:absolute">
+        <h1>Connect to Solana Wallet</h1>
+        <button id="connect-button">Connect Wallet</button>
+        <div id="account-info"></div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const connectButton = document.getElementById('connect-button');
+            const accountInfoDiv = document.getElementById('account-info');
+
+            connectButton.addEventListener('click', async () => {
+                try {
+                    // Check if Phantom wallet extension is installed
+                    const provider = window.solana;
+                    if (provider && provider.isPhantom) {
+                        // Connect to the wallet
+                        const response = await provider.connect();
+                        const publicKey = response.publicKey.toString();
+
+                        // Display the wallet address
+                        accountInfoDiv.innerHTML = `<p>Connected Wallet: ${publicKey}</p>`;
+                    } else {
+                        alert('Phantom wallet is not installed. Please install it from https://phantom.app/');
+                    }
+                } catch (err) {
+                    console.error(err);
+                    accountInfoDiv.innerHTML = `<p>Failed to connect wallet: ${err.message}</p>`;
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

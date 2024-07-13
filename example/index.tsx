@@ -8,15 +8,19 @@ import { Suspense, useEffect, useState } from "react";
 
 import AppWalletProvider from "../example/AppWalletProvider";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { useWallet } from '@solana/wallet-adapter-react';
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 const wallet = ReactDOM.createRoot(document.querySelector("#wallet"));
 
 wallet.render(
-    <AppWalletProvider><WalletMultiButton /></AppWalletProvider>
+    <><AppWalletProvider><WalletMultiButton /></AppWalletProvider></>
 );
 
 const EcctrlJoystickControls = () => {
+
+    const { connected } = useWallet();
+    console.log(connected);
 
   const [isTouchScreen, setIsTouchScreen] = useState(false)
   useEffect(() => {
@@ -38,7 +42,6 @@ const EcctrlJoystickControls = () => {
 
 root.render(
   <>
-  <AppWalletProvider>
     <Leva collapsed />
     <EcctrlJoystickControls />
     <Canvas
@@ -58,6 +61,5 @@ root.render(
         <Experience />
       </Suspense>
     </Canvas>
-  </AppWalletProvider>
   </>
 );
