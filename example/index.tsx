@@ -29,7 +29,7 @@ const EcctrlJoystickControls = () => {
 
     const { connected } = useWallet();
     console.log(connected);
-    console.log(process.env.REACT_APP_NOT_SECRET_CODE);
+    console.log(process.env.REACT_APP_API_SONAR);
 
     const provider = window.solana;
     console.log(provider);
