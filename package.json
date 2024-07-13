@@ -47,6 +47,7 @@
     "@solana/wallet-adapter-react-ui": "^0.9.35",
     "@solana/wallet-adapter-wallets": "^0.19.32",
     "@solana/web3.js": "^1.95.0",
+    "dotenv": "^16.4.5",
     "leva": "^0.9.34",
     "react-scripts": "^5.0.1",
     "zustand": "^4.4.7"

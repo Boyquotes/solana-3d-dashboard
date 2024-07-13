@@ -14,6 +14,7 @@ import ShotCube from "./ShotCube";
 import { useControls } from "leva";
 import CharacterModel from "./CharacterModel";
 import React, { useEffect, useState } from "react";
+import SonarWatch from "./SonarWatch";
 
 export default function Experience() {
   /**
@@ -110,6 +111,9 @@ export default function Experience() {
 
         {/* Shoting cubes */}
         <ShotCube />
+
+        <SonarWatch />
+
       </Physics >
     </>
   );

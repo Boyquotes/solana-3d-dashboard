@@ -11,12 +11,15 @@ import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from '@solana/wallet-adapter-react';
 import { Connection, PublicKey, clusterApiUrl, Transaction, SystemProgram, Keypair } from '@solana/web3.js';
 
+// import dotenv from 'dotenv';
+// dotenv.config();
+
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 const wallet = ReactDOM.createRoot(document.querySelector("#wallet"));
 
-wallet.render(
-    <><AppWalletProvider><WalletMultiButton /></AppWalletProvider></>
-);
+// wallet.render(
+//     <><AppWalletProvider><WalletMultiButton /></AppWalletProvider></>
+// );
 
 const EcctrlJoystickControls = () => {
 
@@ -24,29 +27,30 @@ const EcctrlJoystickControls = () => {
     const from = Keypair.generate();
     console.log(from);
 
-    console.log(window.solana);
-    console.log(window.solana.isPhantom);
+    // console.log(window.solana);
+    // console.log(window.solana.isPhantom);
 
     const { connected } = useWallet();
     console.log(connected);
-    console.log(process.env.REACT_APP_API_SONAR);
+    // console.log(process.env.REACT_APP_API_SONAR);
+    console.log(import.meta.env.VITE_API_KEY);
 
-    const provider = window.solana;
-    console.log(provider);
-    const connectWallet = async () => {
-        try {
-            if (provider && provider.isPhantom) {
-                // Connect to the wallet
-                const response = await provider.connect();
-                const publicKey = response.publicKey.toString();
-                console.log(publicKey);
-            }
-        } catch (err) {
-            console.error(err);
-        }
+    // const provider = window.solana;
+    // console.log(provider);
+    // const connectWallet = async () => {
+    //     try {
+    //         if (provider && provider.isPhantom) {
+    //             // Connect to the wallet
+    //             const response = await provider.connect();
+    //             const publicKey = response.publicKey.toString();
+    //             console.log(publicKey);
+    //         }
+    //     } catch (err) {
+    //         console.error(err);
+    //     }
 
-    }
-    connectWallet();
+    // }
+    // connectWallet();
     
         const [isTouchScreen, setIsTouchScreen] = useState(false)
         useEffect(() => {
