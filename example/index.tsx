@@ -9,6 +9,7 @@ import { Suspense, useEffect, useState } from "react";
 import AppWalletProvider from "../example/AppWalletProvider";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from '@solana/wallet-adapter-react';
+import { Connection, PublicKey, clusterApiUrl, Transaction, SystemProgram, Keypair } from '@solana/web3.js';
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 const wallet = ReactDOM.createRoot(document.querySelector("#wallet"));
@@ -18,6 +19,13 @@ wallet.render(
 );
 
 const EcctrlJoystickControls = () => {
+
+    // Generate a new Keypair
+    const from = Keypair.generate();
+    console.log(from);
+
+console.log(window.solana);
+// console.log(window.solana.isPhantom);
 
     const { connected } = useWallet();
     console.log(connected);
