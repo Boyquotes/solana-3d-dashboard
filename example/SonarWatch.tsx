@@ -6,12 +6,15 @@ import { useThree, Canvas } from "@react-three/fiber";
 import * as React from 'react';
 import { useRef, useMemo, useState, useEffect } from "react";
 import ShotCube from "./ShotCube";
+import { Connection, PublicKey, clusterApiUrl, Transaction, SystemProgram, Keypair, LAMPORTS_PER_SOL } from '@solana/web3.js';
+
 
 export default function SonarWatch() {
 
     const [cubeNetworthText, setCubeNetworthText] = useState([]);
     const [addressWalletSolana, setAddressWalletSolana] = useState("GthTyfd3EV9Y8wN6zhZeES5PgT2jQVzLrZizfZquAY5S");
     //   setAddressWalletSolana("GthTyfd3EV9Y8wN6zhZeES5PgT2jQVzLrZizfZquAY5S");
+    const [balance, setBalance] = useState(null);
 
     const provider = window.solana;
     console.log("provider");
@@ -43,11 +46,20 @@ export default function SonarWatch() {
                     console.log("publicKey");
                     console.log(publicKey);
                     setAddressWalletSolana(publicKey);
+                    // Fetch the balance
+                    const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
+                    const balance = await connection.getBalance(publicKey);
+
+                    // Convert the balance from lamports to SOL (1 SOL = 1,000,000,000 lamports)
+                    const balanceInSOL = balance / LAMPORTS_PER_SOL;
+                    console.log(`Balance: ${balanceInSOL} SOL`);
                 }
             } catch (err) {
                 console.error(err);
             }
         }
+
+
 
         const fetchDataSonar = async () => {
             const apiUrl = "https://portfolio-api.sonar.watch/v1/portfolio/fetch?useCache=false&address=" + addressWalletSolana + "&addressSystem=solana"

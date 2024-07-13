@@ -9,7 +9,7 @@ import { Suspense, useEffect, useState } from "react";
 import AppWalletProvider from "../example/AppWalletProvider";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from '@solana/wallet-adapter-react';
-import { Connection, PublicKey, clusterApiUrl, Transaction, SystemProgram, Keypair } from '@solana/web3.js';
+import { Connection, PublicKey, clusterApiUrl, Transaction, SystemProgram, Keypair, LAMPORTS_PER_SOL } from '@solana/web3.js';
 
 // import dotenv from 'dotenv';
 // dotenv.config();
