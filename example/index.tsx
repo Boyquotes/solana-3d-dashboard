@@ -43,6 +43,8 @@ const EcctrlJoystickControls = () => {
         } catch (err) {
             console.error(err);
         }
+
+    }
         const [isTouchScreen, setIsTouchScreen] = useState(false)
         useEffect(() => {
             // Check if using a touch control device, show/hide joystick
