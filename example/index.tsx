@@ -45,6 +45,8 @@ const EcctrlJoystickControls = () => {
         }
 
     }
+    connectWallet();
+    
         const [isTouchScreen, setIsTouchScreen] = useState(false)
         useEffect(() => {
             // Check if using a touch control device, show/hide joystick
