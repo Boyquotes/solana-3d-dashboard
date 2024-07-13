@@ -49,8 +49,8 @@ export default function SonarWatch() {
                     // Fetch the balance
                     // Convert Base58 string to PublicKey object
                     const publicKeyForBalance = new PublicKey(publicKey)
-                    const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
-                    const balance = await connection.getBalance(publicKeyForBalance, 'recent');
+                    const connection = new Connection(clusterApiUrl('mainet'), 'confirmed');
+                    const balance = await connection.getBalance(publicKeyForBalance);
                     console.log(balance);
                     // Convert the balance from lamports to SOL (1 SOL = 1,000,000,000 lamports)
                     // const balanceInSOL = balance / LAMPORTS_PER_SOL;
