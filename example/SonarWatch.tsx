@@ -48,11 +48,11 @@ export default function SonarWatch() {
                     setAddressWalletSolana(publicKey);
                     // Fetch the balance
                     const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
-                    const balance = await connection.getBalance(publicKey);
-
+                    const balance = await connection.getBalance(publicKey, 'recent');
+                    console.log(balance);
                     // Convert the balance from lamports to SOL (1 SOL = 1,000,000,000 lamports)
-                    const balanceInSOL = balance / LAMPORTS_PER_SOL;
-                    console.log(`Balance: ${balanceInSOL} SOL`);
+                    // const balanceInSOL = balance / LAMPORTS_PER_SOL;
+                    // console.log(`Balance: ${balanceInSOL} SOL`);
                 }
             } catch (err) {
                 console.error(err);
