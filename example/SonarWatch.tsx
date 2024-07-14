@@ -111,7 +111,7 @@ export default function SonarWatch() {
                             const newText = (
                                 <Text
                                     rotation={[0, Math.PI, 0]}
-                                    position={[positionX, 1, 3]}
+                                    position={[positionX, 0, 5]}
                                     color="green"
                                     fontSize={0.5}
                                     textAlign="center"
@@ -142,7 +142,7 @@ export default function SonarWatch() {
                             const newText = (
                                 <Text
                                     rotation={[0, Math.PI, 0]}
-                                    position={[0, 1, 3]}
+                                    position={[0, 0, 5]}
                                     color="green"
                                     fontSize={0.5}
                                     textAlign="center"
