@@ -19,6 +19,7 @@ export default function SonarWatch() {
     const [dataSonarWatch, setDataSonarWatch] = useState();
     const [cubeNetworthText, setCubeNetworthText] = useState([]);
     const [cubeImgToken, setCubeImgToken] = useState([]);
+    const [watchMe, setWatchMe] = useState(false);
     const [newTextWallet, setNewTextWallet] = useState([]);
     let [positionX, setPositionX] = useState(0);
     // AUDIO
@@ -77,7 +78,10 @@ export default function SonarWatch() {
             if(address && !addressWalletSolana){
                 setAddressWalletSolana(address);
             }
-        console.log(addressWalletSolana+" addressWalletSolana");
+            if(!address && !addressWalletSolana){
+                setAddressWalletSolana("GthTyfd3EV9Y8wN6zhZeES5PgT2jQVzLrZizfZquAY5S");
+            }
+            console.log(addressWalletSolana+" addressWalletSolana");
             const apiUrl = "https://portfolio-api.sonar.watch/v1/portfolio/fetch?useCache=false&address=" + addressWalletSolana + "&addressSystem=solana"
             try {
                 const response = await fetch(apiUrl, {
@@ -140,7 +144,7 @@ export default function SonarWatch() {
                             if(tokenSW.data.address == "11111111111111111111111111111111"){
                                 imgToken = "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/So11111111111111111111111111111111111111112/logo.png";
                             }
-                            else if(tokenSW.data.address == "xAURp5XmAG7772mfkSy6vRAjGK9JofYjc3dmQDWdVDP" || tokenSW.data.address == "DJafV9qemGp7mLMEn5wrfqaFwxsbLgUsGVS16zKRk9kc" || tokenSW.data.address == "94jMUy411XNUw1CnkFr2514fq6KRc49W3kAmrjJiuZLx"){
+                            else if( tokenSW.data.address == "Fp4gjLpTsPqBN6xDGpDHwtnuEofjyiZKxxZxzvJnjxV6" || tokenSW.data.address == "xAURp5XmAG7772mfkSy6vRAjGK9JofYjc3dmQDWdVDP" || tokenSW.data.address == "DJafV9qemGp7mLMEn5wrfqaFwxsbLgUsGVS16zKRk9kc" || tokenSW.data.address == "94jMUy411XNUw1CnkFr2514fq6KRc49W3kAmrjJiuZLx"){
                                 imgToken = "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/So11111111111111111111111111111111111111112/logo.png";
                             }
                             else{
@@ -260,6 +264,7 @@ export default function SonarWatch() {
                         </Text>);
                 }
                 setNewTextWallet(newTextWallet);
+                setWatchMe(false);
             } catch (err) {
                 console.error(err);
             }
@@ -273,7 +278,7 @@ export default function SonarWatch() {
         // });
         getWalletSolana();
         // fetchDataSonar();
-    }, []);
+    }, [watchMe]);
 
 
     // audioLoader.load( 'gling_coin.wav', function( buffer ) {
@@ -289,10 +294,10 @@ export default function SonarWatch() {
         console.log("already onDemand");
     }
     else{
-        setAddressWalletSolana("GthTyfd3EV9Y8wN6zhZeES5PgT2jQVzLrZizfZquAY5S")
+        setWatchMe(true);
         setLoading(true);
         setReload(true);
-        // fetchDataSonar("GthTyfd3EV9Y8wN6zhZeES5PgT2jQVzLrZizfZquAY5S");
+        // fetchDataSonar();
     }
   };
 
@@ -321,6 +326,28 @@ export default function SonarWatch() {
             // fetchDataSonar("MJKqp326RZCHnAAbew9MDdui3iCKWco7fsK9sVuZTX2");
         }
     };
+    const checkBalancesAddressWhale2  = () => {
+        setCubeImgToken([]);
+        if(loading){
+            console.log("already onDemand");
+        }
+        else{
+            setAddressWalletSolana("EJRJswH9LyjhAfBWwPBvat1LQtrJYK4sVUzsea889cQt")
+            setLoading(true);
+            setReload(true);
+        }
+    };
+    const checkBalancesAddressWhale3  = () => {
+        setCubeImgToken([]);
+        if(loading){
+            console.log("already onDemand");
+        }
+        else{
+            setAddressWalletSolana("GitYucwpNcg6Dx1Y15UQ9TQn8LZMX1uuqQNn8rXxEWNC")
+            setLoading(true);
+            setReload(true);
+        }
+    };
  console.log("address solana"+addressWalletSolana);
  console.log("cubeImgToken"+cubeImgToken.length);
 // setMiddleWallet(0);
@@ -345,11 +372,27 @@ console.log("middleWallet wallet "+calculMiddleWallet);
                 {newTextWallet}
                 <Text
                 rotation={[0, Math.PI, 0]}
-                position={[-3.5, 5, 0]}
+                position={[-11, 5, 0]}
                 color="black"
                 fontSize={0.5}
                 onClick={checkBalancesAddress}
-                >View whale portfolio {cubeImgToken.length}
+                >View whale portfolio
+                </Text>
+                <Text
+                rotation={[0, Math.PI, 0]}
+                position={[-11, 4, 0]}
+                color="black"
+                fontSize={0.5}
+                onClick={checkBalancesAddressWhale2}
+                >View whale 2 portfolio
+                </Text>
+                <Text
+                rotation={[0, Math.PI, 0]}
+                position={[-11, 3, 0]}
+                color="black"
+                fontSize={0.5}
+                onClick={checkBalancesAddressWhale3}
+                >View whale 3 portfolio
                 </Text>
                 <Text
                 rotation={[0, Math.PI, 0]}
