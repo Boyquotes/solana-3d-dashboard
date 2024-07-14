@@ -55,7 +55,7 @@ export default function Experience() {
 
   return (
     <>
-      <Perf position="top-left" minimal />
+      {/* <Perf position="top-left" minimal /> */}
 
       <Grid
         args={[300, 300]}
@@ -67,12 +67,11 @@ export default function Experience() {
 
       <Lights />
 
-      <Physics debug={physics} timeStep="vary" paused={pausedPhysics}>
+      <Physics timeStep="vary" paused={pausedPhysics}>
         {/* Keyboard preset */}
         <KeyboardControls map={keyboardMap}>
           {/* Character Control */}
           <Ecctrl
-            debug
             animated
             followLight
             springK={2}

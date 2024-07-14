@@ -71,7 +71,7 @@ const Ecctrl: ForwardRefRenderFunction<RapierRigidBody, EcctrlProps> = ({
   // Follow light setups
   followLightPos = { x: 20, y: 30, z: 10 },
   // Base control setups
-  maxVelLimit = 2.5,
+  maxVelLimit = 5.5,
   turnVelMultiplier = 0.2,
   turnSpeed = 15,
   sprintMult = 2,
