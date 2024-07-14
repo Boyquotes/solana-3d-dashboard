@@ -108,7 +108,7 @@ export default function SonarWatch() {
                                 >
                                     {netWorth}
                                 </Text>);
-                            setCubeNetworthText(newText);
+                            setCubeNetworthText((prevMeshes) => [...prevMeshes, newText]);
                         }
                         else {
                             let netWorth = element.value.toFixed(4);
@@ -121,6 +121,17 @@ export default function SonarWatch() {
                             console.log(element.data.assets[0].data.amount);
                             let imgToken = "https://raw.githubusercontent.com/sonarwatch/token-lists/main/images/solana/"+element.data.assets[0].data.address+".webp";
                             console.log(imgToken);
+                            const newText = (
+                                <Text
+                                    rotation={[0, Math.PI, 0]}
+                                    position={[positionX, 1, 3]}
+                                    color="green"
+                                    fontSize={0.5}
+                                    textAlign="center"
+                                >
+                                    {netWorth}
+                                </Text>);
+                            setCubeNetworthText((prevMeshes) => [...prevMeshes, newText]);
                         }
                     positionX = positionX + 1;
                     }
@@ -134,7 +145,15 @@ export default function SonarWatch() {
     }, [addressWalletSolana]);
     return (
         <group position={[0, 0, 10]}>
-            {cubeNetworthText}
+        {cubeNetworthText.map((item, i, arr) => {
+          // if (arr.length - 1 === i) {
+            console.log(cubeMesh)
+            return (
+              <>
+                {item}
+              </>
+            )})
+        }
         </group>
     );
 
