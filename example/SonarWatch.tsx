@@ -133,12 +133,10 @@ export default function SonarWatch() {
                             console.log(imgToken);
                             const newImgToken = (
                                 <Suspense fallback={null}>
-                                    <RigidBody mass={100}>
-                                        <BoxWithTexture url="https://raw.githubusercontent.com/sonarwatch/token-lists/main/images/solana/DFL1zNkaGPWm1BqAVqRjCZvHmwTFrEaJtbzJWgseoNJh.webp" />
-                                    </RigidBody>
+                                    <BoxWithTexture url="https://raw.githubusercontent.com/sonarwatch/token-lists/main/images/solana/DFL1zNkaGPWm1BqAVqRjCZvHmwTFrEaJtbzJWgseoNJh.webp" />
                                 </Suspense>
                             )
-                            setCubeImgToken((prevMeshes) => [...prevMeshes, newImgToken])
+                            // setCubeImgToken((prevMeshes) => [...prevMeshes, newImgToken])
                             const newText = (
                                 <Text
                                     rotation={[0, Math.PI, 0]}
@@ -149,7 +147,13 @@ export default function SonarWatch() {
                                 >
                                     {netWorth}
                                 </Text>);
-                            setCubeNetworthText((prevMeshes) => [...prevMeshes, newText]);
+                            const newRigidB = (
+                                <RigidBody mass={100}>
+                                    {newText}
+                                    {newImgToken}
+                                </RigidBody>
+                            )
+                            setCubeImgToken((prevMeshes) => [...prevMeshes, newRigidB]);
                         }
                     positionX = positionX + 8;
                     }
