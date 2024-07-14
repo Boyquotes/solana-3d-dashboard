@@ -119,6 +119,8 @@ export default function SonarWatch() {
                             console.log(element.data.assets[0]);
                             console.log(element.data.assets[0].data.address);
                             console.log(element.data.assets[0].data.amount);
+                            let imgToken = "https://raw.githubusercontent.com/sonarwatch/token-lists/main/images/solana/"+element.data.assets[0].data.address+".webp";
+                            console.log(imgToken);
                         }
                     positionX = positionX + 1;
                     }
