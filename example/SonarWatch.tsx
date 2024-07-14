@@ -13,7 +13,7 @@ export default function SonarWatch() {
 
     const [cubeNetworthText, setCubeNetworthText] = useState([]);
     const [cubeImgToken, setCubeImgToken] = useState([]);
-    const [positionX, setPositionX] = useState(0);
+    let [positionX, setPositionX] = useState(0);
     const listener = new THREE.AudioListener();
     const audioLoader = new THREE.AudioLoader();
     const sound = new THREE.Audio( listener );
