@@ -88,8 +88,11 @@ export default function Experience() {
           </Ecctrl>
         </KeyboardControls>
 
+        {/* Floor */}
+        <Floor />
+
         {/* Rough plan */}
-        <RoughPlane />
+        {/* <RoughPlane /> */}
 
         {/* Slopes and stairs */}
         {/* <Slopes /> */}
@@ -105,9 +108,6 @@ export default function Experience() {
 
         {/* Dynamic platforms */}
         {/* <DynamicPlatforms /> */}
-
-        {/* Floor */}
-        {/* <Floor /> */}
 
         {/* Shoting cubes */}
         {/* <ShotCube /> */}

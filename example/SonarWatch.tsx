@@ -92,6 +92,9 @@ export default function SonarWatch() {
                         if (element.value > 1) {
                             let netWorth = element.value.toFixed(2);
                             console.log('aquis' + netWorth);
+                            let token = element.data[0];
+                            console.log(token);
+                            // https://raw.githubusercontent.com/sonarwatch/token-lists/main/images/solana/DFL1zNkaGPWm1BqAVqRjCZvHmwTFrEaJtbzJWgseoNJh.webp
                             const newText = (
                                 <Text
                                     rotation={[0, Math.PI, 0]}
