@@ -46,7 +46,7 @@ export default function SonarWatch() {
     // connectWallet();
 
     const fetchDataSonar = async () => {
-
+        
         function Image() {
             const texture = useLoader(THREE.TextureLoader, img)
             return (
@@ -56,7 +56,8 @@ export default function SonarWatch() {
                 </mesh>
             )
         }
-
+console.log(addressWalletSolana)
+console.log("addressWalletSolana")
         const apiUrl = "https://portfolio-api.sonar.watch/v1/portfolio/fetch?useCache=false&address=" + addressWalletSolana + "&addressSystem=solana"
         try {
             const response = await fetch(apiUrl, {
@@ -81,118 +82,142 @@ export default function SonarWatch() {
             }
             // debugger
             let i = 0;
+            let z = 0
             let imgToken;
             data.elements.forEach(element => {
                 console.log(element)
                 if (element.platformId == "wallet-tokens") {
-                    if (element.value > 1) {
+                    if (element.value > 0.1) {
                         console.log(positionX);
                         let netWorth = element.value.toFixed(2);
                         console.log('aquis' + netWorth);
                         let token = element.data.assets;
                         console.log(token);
-                        console.log(element.data.assets[0]);
-                        console.log(element.data.assets[0].data.address);
-                        console.log(element.data.assets[0].data.amount);
+                        token.forEach(tokenSW => {
+                            console.log(tokenSW.data.address);
+                            console.log(tokenSW.data.amount);
+                            console.log(tokenSW);
+                            if(tokenSW.data.address == "11111111111111111111111111111111"){
+                                imgToken = "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/So11111111111111111111111111111111111111112/logo.png";
+                            }
+                            else if(tokenSW.data.address == "xAURp5XmAG7772mfkSy6vRAjGK9JofYjc3dmQDWdVDP" || tokenSW.data.address == "DJafV9qemGp7mLMEn5wrfqaFwxsbLgUsGVS16zKRk9kc" || tokenSW.data.address == "94jMUy411XNUw1CnkFr2514fq6KRc49W3kAmrjJiuZLx"){
+                                imgToken = "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/So11111111111111111111111111111111111111112/logo.png";
+                            }
+                            else{
+                                imgToken = "https://raw.githubusercontent.com/sonarwatch/token-lists/main/images/solana/"+tokenSW.data.address+".webp";
+                            }
+                            if (element.value > 1) {
+                                netWorth = tokenSW.value.toFixed(2);
+                            }
+                            else{
+                                netWorth = tokenSW.value.toFixed(4);
+                            }
+                            console.log(imgToken);
+                            const newImgToken = (
+                                <Suspense fallback={null}>
+                                    <RigidBody mass={100} position={[i, 2, z]}>
+                                        <BoxWithTexture url={imgToken} />
+                                    </RigidBody>
+                                </Suspense>
+                            )
+                            // setCubeImgToken((prevMeshes) => [...prevMeshes, newImgToken])
+                            console.log(i);
+                            const newText = (
+                                <Text
+                                    rotation={[0, Math.PI, 0]}
+                                    position={[i, 2, z]}
+                                    color="green"
+                                    fontSize={0.5}
+                                    textAlign="center"
+                                >
+                                    {netWorth}
+                                </Text>);
+                            console.log(i);
+                            const newRigidB = (
+                                <group position={[i, 0, 0]}>
+                                    {newText}
+                                    {newImgToken}
+                                </group>
+                            )
+                            setCubeImgToken((prevMeshes) => [...prevMeshes, newRigidB]);
+                            setCubeNetworthText((prevMeshes) => [...prevMeshes, newText]);
+                            console.log(i);
+                            i = i+3;
+                            if(i == 30 || i == 60 || i == 90 || i == 110 || i == 140){
+                                i = 0;
+                                z += 10;
+                            }
+                            console.log(i);
+                        });
+                    }
+                    else{
+                        console.log("wallet empty or poor wallet")
+                    }
                         // https://raw.githubusercontent.com/sonarwatch/token-lists/main/images/solana/DFL1zNkaGPWm1BqAVqRjCZvHmwTFrEaJtbzJWgseoNJh.webp
-                        if(element.data.assets[0].data.address == "11111111111111111111111111111111"){
-                            imgToken = "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/So11111111111111111111111111111111111111112/logo.png";
-                        }
-                        else{
-                            imgToken = "https://raw.githubusercontent.com/sonarwatch/token-lists/main/images/solana/"+element.data.assets[0].data.address+".webp";
-                        }
-                        console.log(imgToken);
-                        const newImgToken = (
-                            <Suspense fallback={null}>
-                                <RigidBody mass={100}>
-                                    <BoxWithTexture url={imgToken} />
-                                </RigidBody>
-                            </Suspense>
-                        )
-                        // setCubeImgToken((prevMeshes) => [...prevMeshes, newImgToken])
-                        const newText = (
-                            <Text
-                                rotation={[0, Math.PI, 0]}
-                                position={[i, 2, 0]}
-                                color="green"
-                                fontSize={0.5}
-                                textAlign="center"
-                            >
-                                {netWorth}
-                            </Text>);
-                        const newRigidB = (
-                            <group position={[i, 0, 2]}>
-                                {newText}
-                                {newImgToken}
-                            </group>
-                        )
-                        console.log(i);
-                        i = i+5;
-                        console.log(i);
-                        setCubeImgToken((prevMeshes) => [...prevMeshes, newRigidB]);
-                        setCubeNetworthText((prevMeshes) => [...prevMeshes, newText]);
-                    }
-                    else {
-                        console.log(positionX);
-                        console.log(typeof(positionX));
-                        setPositionX(positionX+30);
-                        console.log(positionX);
-                        let netWorth = element.value.toFixed(4);
-                        console.log('aquis less 1' + netWorth);
-                        let token = element.data.assets;
-                        console.log("token");
-                        console.log(token);
-                        console.log(element.data.assets[0]);
-                        console.log(element.data.assets[0].data.address);
-                        console.log(element.data.assets[0].data.amount);
-                        if(element.data.assets[0].data.address == "11111111111111111111111111111111"){
-                            imgToken = "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/So11111111111111111111111111111111111111112/logo.png";
-                        }
-                        else{
-                            imgToken = "https://raw.githubusercontent.com/sonarwatch/token-lists/main/images/solana/"+element.data.assets[0].data.address+".webp";
-                        }                        console.log(imgToken);
-                        const newImgToken = (
-                            <Suspense fallback={null}>
-                                <RigidBody mass={100}>
-                                    <BoxWithTexture url={imgToken} />
-                                </RigidBody>
-                            </Suspense>
-                        )
-                        // setCubeImgToken((prevMeshes) => [...prevMeshes, newImgToken])
-                        const newText = (
-                            <Text
-                                rotation={[0, Math.PI, 0]}
-                                position={[i, 2, 0]}
-                                color="green"
-                                fontSize={0.5}
-                                textAlign="center"
-                            >
-                                {netWorth}
-                            </Text>);
-                        const newRigidB = (
-                            <group position={[i, 0, 0]}>
-                                {newText}
-                                {newImgToken}
-                            </group>
-                        )
-                        console.log(i);
-                        i = i+5;
-                        console.log(i);
-                        setCubeImgToken((prevMeshes) => [...prevMeshes, newRigidB]);
-                        setCubeNetworthText((prevMeshes) => [...prevMeshes, newText]);
-                    }
+                    // }
+                    // else {
+                    //     console.log(positionX);
+                    //     console.log(typeof(positionX));
+                    //     setPositionX(positionX+30);
+                    //     console.log(positionX);
+                    //     let netWorth = element.value.toFixed(4);
+                    //     console.log('aquis less 1' + netWorth);
+                    //     let token = element.data.assets;
+                    //     console.log("token");
+                    //     console.log(token);
+                    //     console.log(element.data.assets[0]);
+                    //     console.log(element.data.assets[0].data.address);
+                    //     console.log(element.data.assets[0].data.amount);
+                    //     if(element.data.assets[0].data.address == "11111111111111111111111111111111"){
+                    //         imgToken = "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/So11111111111111111111111111111111111111112/logo.png";
+                    //     }
+                    //     else{
+                    //         imgToken = "https://raw.githubusercontent.com/sonarwatch/token-lists/main/images/solana/"+element.data.assets[0].data.address+".webp";
+                    //     }                        console.log(imgToken);
+                    //     const newImgToken = (
+                    //         <Suspense fallback={null}>
+                    //             <RigidBody mass={100} position={[i, 2, 0]}>
+                    //                 <BoxWithTexture url={imgToken} />
+                    //             </RigidBody>
+                    //         </Suspense>
+                    //     )
+                    //     // setCubeImgToken((prevMeshes) => [...prevMeshes, newImgToken])
+                    //     console.log(i);
+                    //     const newText = (
+                    //         <Text
+                    //             rotation={[0, Math.PI, 0]}
+                    //             position={[i, 2, 0]}
+                    //             color="green"
+                    //             fontSize={0.5}
+                    //             textAlign="center"
+                    //         >
+                    //             {netWorth}
+                    //         </Text>);
+                    //     console.log(i);
+                    //     const newRigidB = (
+                    //         <group position={[i, 0, 0]}>
+                    //             {newText}
+                    //             {newImgToken}
+                    //         </group>
+                    //     )
+                    //     setCubeImgToken((prevMeshes) => [...prevMeshes, newRigidB]);
+                    //     setCubeNetworthText((prevMeshes) => [...prevMeshes, newText]);
+
+                    // console.log(i);
+                    // i = i+5;
+                    // console.log(i);
                 }
             });
-            // audioLoader.load( 'audio/gling_coin.wav', function( buffer ) {
-            //     sound.setBuffer( buffer );
-            //     sound.setLoop( false );
-            //     sound.setVolume( 0.5 );
-            //     sound.play();
-            // });
         } catch (error) {
             console.error('Error fetching data:', error);
         }
         setLoading(false);
+        audioLoader.load( 'audio/gling_coin.wav', function( buffer ) {
+            sound.setBuffer( buffer );
+            sound.setLoop( false );
+            sound.setVolume( 0.5 );
+            sound.play();
+        });
     };
 
     useEffect(() => {
@@ -252,6 +277,7 @@ export default function SonarWatch() {
   };
 
     const checkBalancesAddress  = () => {
+        setAddressWalletSolana("Zztedt4LkJ98H1gosbMe554Pas95Jop3khBiyTSDGzS")
         if(loading){
             console.log("already onDemand");
         }
