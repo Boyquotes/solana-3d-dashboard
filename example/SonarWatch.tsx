@@ -65,14 +65,6 @@ export default function SonarWatch() {
 
     return (
         <mesh ref={meshRef} position={[0, 0, 0]}>
-        <boxBufferGeometry args={[2, 1, 0.1]} />
-        <meshStandardMaterial color="lightblue" />
-            <input
-            type="text"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            style={{ width: '180px', padding: '5px', fontSize: '16px' }}
-            />
         </mesh>
     );
     }
