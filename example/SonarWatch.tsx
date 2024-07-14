@@ -103,6 +103,7 @@ export default function SonarWatch() {
                     console.log(element)
                     if (element.platformId == "wallet-tokens") {
                         if (element.value > 1) {
+                            console.log(positionX);
                             let netWorth = element.value.toFixed(2);
                             console.log('aquis' + netWorth);
                             let token = element.data.assets;
@@ -141,6 +142,9 @@ export default function SonarWatch() {
                             setCubeNetworthText((prevMeshes) => [...prevMeshes, newText]);
                         }
                         else {
+                            console.log(positionX);
+                            setPositionX(positionX+30);
+                            console.log(positionX);
                             let netWorth = element.value.toFixed(4);
                             console.log('aquis less 1' + netWorth);
                             let token = element.data.assets;
@@ -178,7 +182,6 @@ export default function SonarWatch() {
                             setCubeImgToken((prevMeshes) => [...prevMeshes, newRigidB]);
                             setCubeNetworthText((prevMeshes) => [...prevMeshes, newText]);
                         }
-                        setPositionX(positionX+30);
                     }
                 });
                 audioLoader.load( 'audio/gling_coin.wav', function( buffer ) {
@@ -193,8 +196,8 @@ export default function SonarWatch() {
         };
         audioLoader.load( '/solana-3d-dashboard/audio/gling_coin.wav', function( buffer ) {
             sound.setBuffer( buffer );
-            sound.setLoop( false );
-            sound.setVolume( 0.5 );
+            sound.setLoop( true );
+            sound.setVolume( 2 );
             sound.play();
         });
         getWalletSolana();
