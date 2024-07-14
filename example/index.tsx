@@ -15,7 +15,6 @@ import { Connection, PublicKey, clusterApiUrl, Transaction, SystemProgram, Keypa
 // dotenv.config();
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
-const wallet = ReactDOM.createRoot(document.querySelector("#wallet"));
 
 // wallet.render(
 //     <><AppWalletProvider><WalletMultiButton /></AppWalletProvider></>
