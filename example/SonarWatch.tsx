@@ -121,7 +121,7 @@ export default function SonarWatch() {
                             const newText = (
                                 <Text
                                     rotation={[0, Math.PI, 0]}
-                                    position={[0, 3, 0]}
+                                    position={[0, 2, 0]}
                                     color="green"
                                     fontSize={0.5}
                                     textAlign="center"
@@ -160,7 +160,7 @@ export default function SonarWatch() {
                             const newText = (
                                 <Text
                                     rotation={[0, Math.PI, 0]}
-                                    position={[3, 0, 0]}
+                                    position={[0, 2, 0]}
                                     color="green"
                                     fontSize={0.5}
                                     textAlign="center"
@@ -173,7 +173,7 @@ export default function SonarWatch() {
                                     {newImgToken}
                                 </group>
                             )
-                            setPositionX(positionX+5);
+                            setPositionX(positionX+10);
                             setCubeImgToken((prevMeshes) => [...prevMeshes, newRigidB]);
                             setCubeNetworthText((prevMeshes) => [...prevMeshes, newText]);
                         }
