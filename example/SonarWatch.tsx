@@ -12,6 +12,7 @@ import BoxWithTexture from './BoxWithTexture';
 export default function SonarWatch() {
 
     const [cubeNetworthText, setCubeNetworthText] = useState([]);
+    const [cubeImgToken, setCubeImgToken] = useState([]);
     const [addressWalletSolana, setAddressWalletSolana] = useState("GthTyfd3EV9Y8wN6zhZeES5PgT2jQVzLrZizfZquAY5S");
     //   setAddressWalletSolana("GthTyfd3EV9Y8wN6zhZeES5PgT2jQVzLrZizfZquAY5S");
     const [balance, setBalance] = useState(null);
@@ -130,6 +131,12 @@ export default function SonarWatch() {
                             console.log(element.data.assets[0].data.amount);
                             let imgToken = "https://raw.githubusercontent.com/sonarwatch/token-lists/main/images/solana/"+element.data.assets[0].data.address+".webp";
                             console.log(imgToken);
+                            const newImgToken = (
+                                <Suspense fallback={null}>
+                                    <BoxWithTexture url="https://raw.githubusercontent.com/sonarwatch/token-lists/main/images/solana/DFL1zNkaGPWm1BqAVqRjCZvHmwTFrEaJtbzJWgseoNJh.webp" />
+                                </Suspense>
+                            )
+                            setCubeImgToken((prevMeshes) => [...prevMeshes, newImgToken])
                             const newText = (
                                 <Text
                                     rotation={[0, Math.PI, 0]}
@@ -154,18 +161,24 @@ export default function SonarWatch() {
     }, [addressWalletSolana]);
     return (
         <group position={[0, 0, 10]}>
-        <Suspense fallback={null}>
-            <BoxWithTexture url="https://raw.githubusercontent.com/sonarwatch/token-lists/main/images/solana/DFL1zNkaGPWm1BqAVqRjCZvHmwTFrEaJtbzJWgseoNJh.webp" />
-        </Suspense>
-        {cubeNetworthText.map((item, i, arr) => {
-          // if (arr.length - 1 === i) {
-            console.log(item)
-            return (
-              <>
-                {item}
-              </>
-            )})
-        }
+            {cubeNetworthText.map((item, i, arr) => {
+            // if (arr.length - 1 === i) {
+                console.log(item)
+                return (
+                <>
+                    {item}
+                </>
+                )})
+            }
+            {cubeImgToken.map((item, i, arr) => {
+            // if (arr.length - 1 === i) {
+                console.log(item)
+                return (
+                <>
+                    {item}
+                </>
+                )})
+            }
         </group>
     );
 
