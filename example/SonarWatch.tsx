@@ -250,7 +250,7 @@ export default function SonarWatch() {
                         color="black"
                         fontSize={0.5}
                         onClick={checkYourAddress}
-                        >View your portfolio {cubeImgToken.length}
+                        >View your portfolio
                         </Text>);
                 }
                 else{
@@ -265,6 +265,7 @@ export default function SonarWatch() {
                 }
                 setNewTextWallet(newTextWallet);
                 setWatchMe(false);
+                setLoading(false);
             } catch (err) {
                 console.error(err);
             }
@@ -301,7 +302,7 @@ export default function SonarWatch() {
             console.log(publicKey);
             setAddressWalletSolana(publicKey);
         }
-        setWatchMe(true);
+        // setWatchMe(true);
         setLoading(true);
         setReload(true);
         // fetchDataSonar();
