@@ -13,7 +13,8 @@ export default function SonarWatch() {
 
     const [cubeNetworthText, setCubeNetworthText] = useState([]);
     const [cubeImgToken, setCubeImgToken] = useState([]);
-    const [positionX, setPositionX] = useState(5);
+    const [positionX, setPositionX] = useState(10);
+    const audioLoader = new THREE.AudioLoader();
     const [addressWalletSolana, setAddressWalletSolana] = useState("GthTyfd3EV9Y8wN6zhZeES5PgT2jQVzLrZizfZquAY5S");
     //   setAddressWalletSolana("GthTyfd3EV9Y8wN6zhZeES5PgT2jQVzLrZizfZquAY5S");
     const [balance, setBalance] = useState(null);
@@ -129,12 +130,12 @@ export default function SonarWatch() {
                                     {netWorth}
                                 </Text>);
                             const newRigidB = (
-                                <group position={[positionX, 0, 10]}>
+                                <group position={[positionX, 0, 2]}>
                                     {newText}
                                     {newImgToken}
                                 </group>
                             )
-                            setPositionX(positionX+5);
+                            setPositionX(positionX+10);
                             setCubeImgToken((prevMeshes) => [...prevMeshes, newRigidB]);
                             setCubeNetworthText((prevMeshes) => [...prevMeshes, newText]);
                         }
@@ -168,7 +169,7 @@ export default function SonarWatch() {
                                     {netWorth}
                                 </Text>);
                             const newRigidB = (
-                                <group position={[positionX, 0, 10]}>
+                                <group position={[positionX, 0, 2]}>
                                     {newText}
                                     {newImgToken}
                                 </group>
@@ -178,6 +179,12 @@ export default function SonarWatch() {
                             setCubeNetworthText((prevMeshes) => [...prevMeshes, newText]);
                         }
                     }
+                });
+                audioLoader.load( 'audio/gling_coin.wav', function( buffer ) {
+                    sound.setBuffer( buffer );
+                    sound.setLoop( false );
+                    sound.setVolume( 0.5 );
+                    sound.play();
                 });
             } catch (error) {
                 console.error('Error fetching data:', error);
