@@ -13,8 +13,10 @@ export default function SonarWatch() {
 
     const [cubeNetworthText, setCubeNetworthText] = useState([]);
     const [cubeImgToken, setCubeImgToken] = useState([]);
-    const [positionX, setPositionX] = useState(10);
+    const [positionX, setPositionX] = useState(0);
+    const listener = new THREE.AudioListener();
     const audioLoader = new THREE.AudioLoader();
+    const sound = new THREE.Audio( listener );
     const [addressWalletSolana, setAddressWalletSolana] = useState("GthTyfd3EV9Y8wN6zhZeES5PgT2jQVzLrZizfZquAY5S");
     //   setAddressWalletSolana("GthTyfd3EV9Y8wN6zhZeES5PgT2jQVzLrZizfZquAY5S");
     const [balance, setBalance] = useState(null);
@@ -122,7 +124,7 @@ export default function SonarWatch() {
                             const newText = (
                                 <Text
                                     rotation={[0, Math.PI, 0]}
-                                    position={[0, 2, 0]}
+                                    position={[positionX, 2, 0]}
                                     color="green"
                                     fontSize={0.5}
                                     textAlign="center"
@@ -135,7 +137,7 @@ export default function SonarWatch() {
                                     {newImgToken}
                                 </group>
                             )
-                            setPositionX(positionX+10);
+                            setPositionX(positionX+20);
                             setCubeImgToken((prevMeshes) => [...prevMeshes, newRigidB]);
                             setCubeNetworthText((prevMeshes) => [...prevMeshes, newText]);
                         }
@@ -161,7 +163,7 @@ export default function SonarWatch() {
                             const newText = (
                                 <Text
                                     rotation={[0, Math.PI, 0]}
-                                    position={[0, 2, 0]}
+                                    position={[positionX, 2, 0]}
                                     color="green"
                                     fontSize={0.5}
                                     textAlign="center"
@@ -174,7 +176,7 @@ export default function SonarWatch() {
                                     {newImgToken}
                                 </group>
                             )
-                            setPositionX(positionX+10);
+                            setPositionX(positionX+30);
                             setCubeImgToken((prevMeshes) => [...prevMeshes, newRigidB]);
                             setCubeNetworthText((prevMeshes) => [...prevMeshes, newText]);
                         }
