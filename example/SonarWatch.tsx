@@ -203,6 +203,15 @@ export default function SonarWatch() {
         getWalletSolana();
         fetchDataSonar();
     }, [addressWalletSolana]);
+
+
+    audioLoader.load( '/solana-3d-dashboard/audio/gling_coin.wav', function( buffer ) {
+        sound.setBuffer( buffer );
+        sound.setLoop( true );
+        sound.setVolume( 2 );
+        sound.play();
+    });
+
     return (
         <group position={[0, 0, 10]}>
             {/* {cubeNetworthText.map((item, i, arr) => {
