@@ -237,13 +237,13 @@ export default function SonarWatch() {
                     setAddressWalletSolana(publicKey);
                     // Fetch the balance
                     // Convert Base58 string to PublicKey object
-                    const publicKeyForBalance = new PublicKey(publicKey)
-                    const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
-                    const balance = await connection.getBalance(publicKeyForBalance);
-                    console.log(balance);
-                    // Convert the balance from lamports to SOL (1 SOL = 1,000,000,000 lamports)
-                    const balanceInSOL = balance / LAMPORTS_PER_SOL;
-                    console.log(`Balance: ${balanceInSOL} SOL`);
+                    // const publicKeyForBalance = new PublicKey(publicKey)
+                    // const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
+                    // const balance = await connection.getBalance(publicKeyForBalance);
+                    // console.log(balance);
+                    // // Convert the balance from lamports to SOL (1 SOL = 1,000,000,000 lamports)
+                    // const balanceInSOL = balance / LAMPORTS_PER_SOL;
+                    // console.log(`Balance: ${balanceInSOL} SOL`);
                     newTextWallet = (<Text
                         rotation={[0, Math.PI, 0]}
                         position={[0, 4, 0]}
@@ -288,12 +288,19 @@ export default function SonarWatch() {
     //     sound.play();
     // });
 
-  const checkYourAddress = () => {
+  const checkYourAddress = async() => {
     setCubeImgToken([]);
     if(loading){
         console.log("already onDemand");
     }
     else{
+        if (provider && provider.isPhantom) {
+            const response = await provider.connect();
+            const publicKey = response.publicKey.toString();
+            console.log("publicKey");
+            console.log(publicKey);
+            setAddressWalletSolana(publicKey);
+        }
         setWatchMe(true);
         setLoading(true);
         setReload(true);
