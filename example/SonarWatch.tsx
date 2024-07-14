@@ -42,7 +42,6 @@ export default function SonarWatch() {
 
     useEffect(() => {
         const getWalletSolana = async () => {
-            let [positionX, setPositionX] = useState(0);
             try {
                 if (provider && provider.isPhantom) {
                     // Connect to the wallet
@@ -91,7 +90,7 @@ export default function SonarWatch() {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-
+                let [positionX, setPositionX] = useState(0);
                 const data = await response.json();
                 console.log("data sonar");
                 console.log(data);
