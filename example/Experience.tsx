@@ -89,25 +89,25 @@ export default function Experience() {
         </KeyboardControls>
 
         {/* Rough plan */}
-        <RoughPlane />
+        {/* <RoughPlane /> */}
 
         {/* Slopes and stairs */}
-        <Slopes />
+        {/* <Slopes /> */}
 
         {/* Small steps */}
         <Steps />
 
         {/* Rigid body objects */}
-        <RigidObjects />
+        {/* <RigidObjects /> */}
 
         {/* Floating platform */}
-        <FloatingPlatform />
+        {/* <FloatingPlatform /> */}
 
         {/* Dynamic platforms */}
-        <DynamicPlatforms />
+        {/* <DynamicPlatforms /> */}
 
         {/* Floor */}
-        <Floor />
+        {/* <Floor /> */}
 
         {/* Shoting cubes */}
         {/* <ShotCube /> */}
