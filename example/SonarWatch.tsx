@@ -92,8 +92,11 @@ export default function SonarWatch() {
                         if (element.value > 1) {
                             let netWorth = element.value.toFixed(2);
                             console.log('aquis' + netWorth);
-                            let token = element.data[0];
+                            let token = element.data.assets;
                             console.log(token);
+                            console.log(element.data.assets[0]);
+                            console.log(element.data.assets[0].data.address);
+                            console.log(element.data.assets[0].data.amount);
                             // https://raw.githubusercontent.com/sonarwatch/token-lists/main/images/solana/DFL1zNkaGPWm1BqAVqRjCZvHmwTFrEaJtbzJWgseoNJh.webp
                             const newText = (
                                 <Text
