@@ -7,7 +7,7 @@ import * as React from 'react';
 import { useRef, useMemo, useState, useEffect, Suspense } from "react";
 import ShotCube from "./ShotCube";
 import { Connection, PublicKey, clusterApiUrl, Transaction, SystemProgram, Keypair, LAMPORTS_PER_SOL } from '@solana/web3.js';
-
+import BoxWithTexture from './BoxWithTexture';
 
 export default function SonarWatch() {
 
@@ -61,31 +61,16 @@ export default function SonarWatch() {
             }
         }
 
-
-
-        const loader = new THREE.ImageLoader();
-
-        const BoxWithTexture = ({ url }) => {
-        const texture = useLoader(THREE.TextureLoader, url);
-
-        return (
-            <mesh>
-            <boxGeometry args={[2, 2, 2]} />
-            <meshStandardMaterial map={texture} />
-            </mesh>
-        );
-        };
-
         const fetchDataSonar = async () => {
 
             function Image() {
-            const texture = useLoader(THREE.TextureLoader, img)
-            return (
-                <mesh>
-                <planeBufferGeometry attach="geometry" args={[3, 3]} />
-                <meshBasicMaterial attach="material" map={texture} />
-                </mesh>
-            )
+                const texture = useLoader(THREE.TextureLoader, img)
+                return (
+                    <mesh>
+                    <planeBufferGeometry attach="geometry" args={[3, 3]} />
+                    <meshBasicMaterial attach="material" map={texture} />
+                    </mesh>
+                )
             }
 
             const apiUrl = "https://portfolio-api.sonar.watch/v1/portfolio/fetch?useCache=false&address=" + addressWalletSolana + "&addressSystem=solana"
