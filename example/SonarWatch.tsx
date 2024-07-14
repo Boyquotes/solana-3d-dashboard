@@ -13,7 +13,6 @@ export default function SonarWatch() {
 
     const [cubeNetworthText, setCubeNetworthText] = useState([]);
     const [cubeImgToken, setCubeImgToken] = useState([]);
-    let [positionX, setPositionX] = useState(0);
     const listener = new THREE.AudioListener();
     const audioLoader = new THREE.AudioLoader();
     const sound = new THREE.Audio( listener );
@@ -43,6 +42,7 @@ export default function SonarWatch() {
 
     useEffect(() => {
         const getWalletSolana = async () => {
+            let [positionX, setPositionX] = useState(0);
             try {
                 if (provider && provider.isPhantom) {
                     // Connect to the wallet
@@ -205,7 +205,7 @@ export default function SonarWatch() {
     }, [addressWalletSolana]);
 
 
-    audioLoader.load( '/solana-3d-dashboard/audio/gling_coin.wav', function( buffer ) {
+    audioLoader.load( 'gling_coin.wav', function( buffer ) {
         sound.setBuffer( buffer );
         sound.setLoop( true );
         sound.setVolume( 2 );
