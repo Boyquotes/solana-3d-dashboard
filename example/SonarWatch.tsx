@@ -13,6 +13,7 @@ export default function SonarWatch() {
 
     const [cubeNetworthText, setCubeNetworthText] = useState([]);
     const [cubeImgToken, setCubeImgToken] = useState([]);
+    const [positionX, setPositionX] = useState(5);
     const [addressWalletSolana, setAddressWalletSolana] = useState("GthTyfd3EV9Y8wN6zhZeES5PgT2jQVzLrZizfZquAY5S");
     //   setAddressWalletSolana("GthTyfd3EV9Y8wN6zhZeES5PgT2jQVzLrZizfZquAY5S");
     const [balance, setBalance] = useState(null);
@@ -95,7 +96,6 @@ export default function SonarWatch() {
                 console.log(data.owner);
                 console.log(data.tokenInfo);
                 // debugger
-                let positionX = 1;
                 data.elements.forEach(element => {
                     console.log(element)
                     if (element.platformId == "wallet-tokens") {
@@ -133,14 +133,16 @@ export default function SonarWatch() {
                             console.log(imgToken);
                             const newImgToken = (
                                 <Suspense fallback={null}>
-                                    <BoxWithTexture url="https://raw.githubusercontent.com/sonarwatch/token-lists/main/images/solana/DFL1zNkaGPWm1BqAVqRjCZvHmwTFrEaJtbzJWgseoNJh.webp" />
+                                    <RigidBody mass={100}>
+                                        <BoxWithTexture url="https://raw.githubusercontent.com/sonarwatch/token-lists/main/images/solana/DFL1zNkaGPWm1BqAVqRjCZvHmwTFrEaJtbzJWgseoNJh.webp" />
+                                    </RigidBody>
                                 </Suspense>
                             )
                             // setCubeImgToken((prevMeshes) => [...prevMeshes, newImgToken])
                             const newText = (
                                 <Text
                                     rotation={[0, Math.PI, 0]}
-                                    position={[positionX, 1, 3]}
+                                    position={[0, 1, 3]}
                                     color="green"
                                     fontSize={0.5}
                                     textAlign="center"
@@ -148,14 +150,15 @@ export default function SonarWatch() {
                                     {netWorth}
                                 </Text>);
                             const newRigidB = (
-                                <RigidBody mass={100}>
+                                <group position={[positionX, 0, 10]}>
                                     {newText}
                                     {newImgToken}
-                                </RigidBody>
+                                </group>
                             )
+                            setPositionX(positionX+5);
                             setCubeImgToken((prevMeshes) => [...prevMeshes, newRigidB]);
+                            setCubeNetworthText((prevMeshes) => [...prevMeshes, newText]);
                         }
-                    positionX = positionX + 8;
                     }
                 });
             } catch (error) {
