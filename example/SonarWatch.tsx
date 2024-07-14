@@ -11,6 +11,7 @@ import BoxWithTexture from './BoxWithTexture';
 
 export default function SonarWatch() {
 
+    const [loading, setLoading] = useState(false);
     const [cubeNetworthText, setCubeNetworthText] = useState([]);
     const [cubeImgToken, setCubeImgToken] = useState([]);
     let [positionX, setPositionX] = useState(0);
@@ -75,6 +76,9 @@ export default function SonarWatch() {
             console.log(data.fetcherReports);
             console.log(data.owner);
             console.log(data.tokenInfo);
+            if(data.tokenInfo.length == 0){
+                console.log("empty wallet");
+            }
             // debugger
             let i = 0;
             let imgToken;
@@ -188,6 +192,7 @@ export default function SonarWatch() {
         } catch (error) {
             console.error('Error fetching data:', error);
         }
+        setLoading(false);
     };
 
     useEffect(() => {
@@ -233,9 +238,27 @@ export default function SonarWatch() {
     //     sound.play();
     // });
 
-    const checkBalancesAddress = () => {
-        console.log("checkBalancesAddress");
+  const checkBalancesAddressTest = () => {
+    // Prevent the default behavior
+    setAddressWalletSolana("GthTyfd3EV9Y8wN6zhZeES5PgT2jQVzLrZizfZquAY5S")
+    console.log(event);
+    if(loading){
+        console.log("already onDemand");
+    }
+    else{
+        setLoading(true);
         fetchDataSonar();
+    }
+  };
+
+    const checkBalancesAddress  = () => {
+        if(loading){
+            console.log("already onDemand");
+        }
+        else{
+            setLoading(true);
+            fetchDataSonar();
+        }
     };
 
     return (
@@ -245,9 +268,18 @@ export default function SonarWatch() {
             position={[-3.5, 7, 0]}
             color="black"
             fontSize={0.5}
-            onClick={(e) => checkBalancesAddress()}
+            onClick={checkBalancesAddress}
             >
-            View my portfolio
+            View your portfolio
+            </Text>
+            <Text
+            rotation={[0, Math.PI, 0]}
+            position={[3.5, 7, 0]}
+            color="black"
+            fontSize={0.5}
+            onClick={checkBalancesAddressTest}
+            >
+            View test wallet
             </Text>
             {/* {cubeNetworthText.map((item, i, arr) => {
             // if (arr.length - 1 === i) {
