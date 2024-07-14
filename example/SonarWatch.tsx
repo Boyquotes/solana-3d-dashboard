@@ -147,7 +147,7 @@ export default function SonarWatch() {
         <group position={[0, 0, 10]}>
         {cubeNetworthText.map((item, i, arr) => {
           // if (arr.length - 1 === i) {
-            console.log(cubeMesh)
+            console.log(item)
             return (
               <>
                 {item}
