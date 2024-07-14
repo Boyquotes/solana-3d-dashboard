@@ -13,9 +13,13 @@ export default function SonarWatch() {
 
     const [cubeNetworthText, setCubeNetworthText] = useState([]);
     const [cubeImgToken, setCubeImgToken] = useState([]);
+    let [positionX, setPositionX] = useState(0);
+    // AUDIO
     const listener = new THREE.AudioListener();
     const audioLoader = new THREE.AudioLoader();
     const sound = new THREE.Audio( listener );
+
+    // SOLANA
     const [addressWalletSolana, setAddressWalletSolana] = useState("GthTyfd3EV9Y8wN6zhZeES5PgT2jQVzLrZizfZquAY5S");
     //   setAddressWalletSolana("GthTyfd3EV9Y8wN6zhZeES5PgT2jQVzLrZizfZquAY5S");
     const [balance, setBalance] = useState(null);
@@ -90,7 +94,6 @@ export default function SonarWatch() {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                let [positionX, setPositionX] = useState(0);
                 const data = await response.json();
                 console.log("data sonar");
                 console.log(data);
@@ -142,6 +145,7 @@ export default function SonarWatch() {
                         }
                         else {
                             console.log(positionX);
+                            console.log(typeof(positionX));
                             setPositionX(positionX+30);
                             console.log(positionX);
                             let netWorth = element.value.toFixed(4);
