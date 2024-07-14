@@ -113,6 +113,11 @@ export default function SonarWatch() {
                         else {
                             let netWorth = element.value.toFixed(4);
                             console.log('aquis' + netWorth);
+                            let token = element.data.assets;
+                            console.log(token);
+                            console.log(element.data.assets[0]);
+                            console.log(element.data.assets[0].data.address);
+                            console.log(element.data.assets[0].data.amount);
                         }
                     positionX = positionX + 1;
                     }
