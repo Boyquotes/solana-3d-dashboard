@@ -137,7 +137,6 @@ export default function SonarWatch() {
                                     {newImgToken}
                                 </group>
                             )
-                            setPositionX(positionX+20);
                             setCubeImgToken((prevMeshes) => [...prevMeshes, newRigidB]);
                             setCubeNetworthText((prevMeshes) => [...prevMeshes, newText]);
                         }
@@ -176,10 +175,10 @@ export default function SonarWatch() {
                                     {newImgToken}
                                 </group>
                             )
-                            setPositionX(positionX+30);
                             setCubeImgToken((prevMeshes) => [...prevMeshes, newRigidB]);
                             setCubeNetworthText((prevMeshes) => [...prevMeshes, newText]);
                         }
+                        setPositionX(positionX+30);
                     }
                 });
                 audioLoader.load( 'audio/gling_coin.wav', function( buffer ) {
@@ -192,6 +191,12 @@ export default function SonarWatch() {
                 console.error('Error fetching data:', error);
             }
         };
+        audioLoader.load( '/solana-3d-dashboard/audio/gling_coin.wav', function( buffer ) {
+            sound.setBuffer( buffer );
+            sound.setLoop( false );
+            sound.setVolume( 0.5 );
+            sound.play();
+        });
         getWalletSolana();
         fetchDataSonar();
     }, [addressWalletSolana]);
