@@ -89,7 +89,7 @@ export default function Experience() {
         </KeyboardControls>
 
         {/* Rough plan */}
-        {/* <RoughPlane /> */}
+        <RoughPlane />
 
         {/* Slopes and stairs */}
         {/* <Slopes /> */}

@@ -85,6 +85,7 @@ export default function SonarWatch() {
                 console.log(data.owner);
                 console.log(data.tokenInfo);
                 // debugger
+                let positionX = 1;
                 data.elements.forEach(element => {
                     console.log(element)
                     if (element.platformId == "wallet-tokens") {
@@ -94,7 +95,7 @@ export default function SonarWatch() {
                             const newText = (
                                 <Text
                                     rotation={[0, Math.PI, 0]}
-                                    position={[23, 1, -6.51]}
+                                    position={[positionX, 1, 3]}
                                     color="green"
                                     fontSize={0.5}
                                     textAlign="center"
@@ -107,7 +108,7 @@ export default function SonarWatch() {
                             let netWorth = element.value.toFixed(4);
                             console.log('aquis' + netWorth);
                         }
-
+                    positionX = positionX + 1;
                     }
                 });
             } catch (error) {
