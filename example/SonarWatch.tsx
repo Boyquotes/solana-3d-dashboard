@@ -133,7 +133,9 @@ export default function SonarWatch() {
                             console.log(imgToken);
                             const newImgToken = (
                                 <Suspense fallback={null}>
-                                    <BoxWithTexture url="https://raw.githubusercontent.com/sonarwatch/token-lists/main/images/solana/DFL1zNkaGPWm1BqAVqRjCZvHmwTFrEaJtbzJWgseoNJh.webp" />
+                                    <RigidBody mass={100}>
+                                        <BoxWithTexture url="https://raw.githubusercontent.com/sonarwatch/token-lists/main/images/solana/DFL1zNkaGPWm1BqAVqRjCZvHmwTFrEaJtbzJWgseoNJh.webp" />
+                                    </RigidBody>
                                 </Suspense>
                             )
                             setCubeImgToken((prevMeshes) => [...prevMeshes, newImgToken])
